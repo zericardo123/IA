@@ -10,9 +10,10 @@ from langchain.chains import create_history_aware_retriever
 from langchain.chains import create_retrieval_chain
 from dotenv import load_dotenv
 from langchain.chains.combine_documents import create_stuff_documents_chain
+import os
 
 
-load_dotenv() # load the environment variables
+#load_dotenv() # load the environment variables
 def get_response(user_input):
     retriever_chain=get_context_retriever_chain(st.session_state.vector_store)
     conversation_rag_chain=get_conversation_rag_chain(retriever_chain)
@@ -32,7 +33,10 @@ def get_vectorestore_from_url(url):
     return vector_store
 
 def get_context_retriever_chain(vector_store): #ok
-    llm=ChatOpenAI()
+    
+    llm=ChatOpenAI()    
+    llm.openai_api_key = os.getenv("OPENAI_API_KEY")
+     
 
     retriever=vector_store.as_retriever()
     prompt = ChatPromptTemplate.from_messages([
@@ -45,6 +49,7 @@ def get_context_retriever_chain(vector_store): #ok
     return retriever_chain
 def get_conversation_rag_chain(retriever_chain): #ok
     llm=ChatOpenAI()
+    llm.openai_api_key = os.getenv("OPENAI_API_KEY")
     prompt=ChatPromptTemplate.from_messages([
         ("system", "Answer the user's question based on the below context:\n\n{context}"),
         MessagesPlaceholder(variable_name="chat_history"),
