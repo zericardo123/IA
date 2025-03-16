@@ -35,6 +35,7 @@ def get_vectorestore_from_url(url):
 def get_context_retriever_chain(vector_store): #ok
     
     llm=ChatOpenAI()    
+    
     llm.openai_api_key = os.getenv("OPENAI_API_KEY")
      
 
@@ -50,6 +51,7 @@ def get_context_retriever_chain(vector_store): #ok
 def get_conversation_rag_chain(retriever_chain): #ok
     llm=ChatOpenAI()
     llm.openai_api_key = os.getenv("OPENAI_API_KEY")
+    
     prompt=ChatPromptTemplate.from_messages([
         ("system", "Answer the user's question based on the below context:\n\n{context}"),
         MessagesPlaceholder(variable_name="chat_history"),
