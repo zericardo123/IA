@@ -34,9 +34,10 @@ def get_vectorestore_from_url(url):
 
 def get_context_retriever_chain(vector_store): #ok
     
-    llm=ChatOpenAI()    
+    llm=ChatOpenAI() 
+    llm.openai_api_key="sk-proj-3GIXq53h9AB1FnRIrEpmT3BlbkFJD6m4veEyJIOgUxs39Gtg"   
     
-    llm.openai_api_key = os.getenv("OPENAI_API_KEY")
+    # llm.openai_api_key = os.getenv("OPENAI_API_KEY")
      
 
     retriever=vector_store.as_retriever()
@@ -49,8 +50,9 @@ def get_context_retriever_chain(vector_store): #ok
     retriever_chain=create_history_aware_retriever(llm, retriever, prompt)
     return retriever_chain
 def get_conversation_rag_chain(retriever_chain): #ok
+    
     llm=ChatOpenAI()
-    llm.openai_api_key = os.getenv("OPENAI_API_KEY")
+    llm.openai_api_key="sk-proj-3GIXq53h9AB1FnRIrEpmT3BlbkFJD6m4veEyJIOgUxs39Gtg"
     
     prompt=ChatPromptTemplate.from_messages([
         ("system", "Answer the user's question based on the below context:\n\n{context}"),
