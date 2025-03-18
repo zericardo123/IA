@@ -14,6 +14,7 @@ import os
 
 
 #load_dotenv() # load the environment variables
+os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
 def get_response(user_input):
     retriever_chain=get_context_retriever_chain(st.session_state.vector_store)
     conversation_rag_chain=get_conversation_rag_chain(retriever_chain)
@@ -35,7 +36,7 @@ def get_vectorestore_from_url(url):
 def get_context_retriever_chain(vector_store): #ok
     
     llm=ChatOpenAI() 
-    llm.openai_api_key="sk-proj-3GIXq53h9AB1FnRIrEpmT3BlbkFJD6m4veEyJIOgUxs39Gtg"   
+    #llm.openai_api_key="sk-proj-3GIXq53h9AB1FnRIrEpmT3BlbkFJD6m4veEyJIOgUxs39Gtg"   
     
     # llm.openai_api_key = os.getenv("OPENAI_API_KEY")
      
@@ -52,7 +53,7 @@ def get_context_retriever_chain(vector_store): #ok
 def get_conversation_rag_chain(retriever_chain): #ok
     
     llm=ChatOpenAI()
-    llm.openai_api_key="sk-proj-3GIXq53h9AB1FnRIrEpmT3BlbkFJD6m4veEyJIOgUxs39Gtg"
+    #llm.openai_api_key="sk-proj-3GIXq53h9AB1FnRIrEpmT3BlbkFJD6m4veEyJIOgUxs39Gtg"
     
     prompt=ChatPromptTemplate.from_messages([
         ("system", "Answer the user's question based on the below context:\n\n{context}"),
