@@ -14,12 +14,14 @@ import os
 
 
 
-#load_dotenv() # load the environment variables
-headers = {
-    "authorization": st.secrets["auth_token"],
-    "content-type": "application/json"  
+load_dotenv() # load the environment variables
+auth_token=st.secrets["OPENAI_API_KEY"]
 
-}
+#headers = {
+    #"authorization": st.secrets["auth_token"],
+    #"content-type": "application/json"  
+
+#}
 
 
 #os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
