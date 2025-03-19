@@ -67,7 +67,9 @@ def get_conversation_rag_chain(retriever_chain): #ok
     llm=ChatOpenAI()
     
     prompt=ChatPromptTemplate.from_messages([
-        ("system", "Answer the user's question based on the below context:\n\n{context}"),
+        #("system", "Answer the user's question based on the below context:\n\n{context}"),
+        ("system", "Você deverá responder os questionamentos, de acordo com o contexto que lhe será informado abaixo. Caso o questionamento esteja fora do contexto, somente
+        responda que está fora de escopa o questinamento. o context é:\n\n{context}"),
         MessagesPlaceholder(variable_name="chat_history"),
         ("user", "{input}"),
     ])
@@ -80,7 +82,7 @@ st.set_page_config(page_title="Chatbot", page_icon=":robot:")
 st.title("Chatbot")
 #if "chat_history" not in st.session_state:
     #st.session_state.chat_history = [
-        #AIMessage(content="Ola! Eu sou a secretária da CMF, em que posso lhe ajudar?"),
+        #AIMessage(content="Ola! Meu nome é Júlia! Eu sou a assistente da CMF, em que posso lhe ajudar?"),
     #]
 
 
