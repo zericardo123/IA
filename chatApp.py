@@ -96,7 +96,7 @@ else:
     #session state
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = [
-            AIMessage(content="Ola! Eu sou a secretária da CMF, em que posso lhe ajudar?"),
+            AIMessage(content="Ola! Meu nome é Júlia! Eu sou a assistente da CMF, em que posso lhe ajudar?"),
         ]
     if "vector_store" not in st.session_state:
         st.session_state.vector_store=get_vectorestore_from_url(website_url)    
