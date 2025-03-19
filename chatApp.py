@@ -68,8 +68,7 @@ def get_conversation_rag_chain(retriever_chain): #ok
     
     prompt=ChatPromptTemplate.from_messages([
         #("system", "Answer the user's question based on the below context:\n\n{context}"),
-        ("system", "Você deverá responder os questionamentos, de acordo com o contexto que lhe será informado abaixo. Caso o questionamento esteja fora do contexto, somente
-        responda que está fora de escopa o questinamento. o context é:\n\n{context}"),
+        ("system", "Você deverá responder os questionamentos, de acordo com o contexto que lhe será informado abaixo. Caso o questionamento esteja fora do contexto, somente responda que está fora de escopa o questinamento. o context é:\n\n{context}"),
         MessagesPlaceholder(variable_name="chat_history"),
         ("user", "{input}"),
     ])
